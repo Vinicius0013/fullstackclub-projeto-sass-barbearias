@@ -1,3 +1,14 @@
+Sistema que utiliza as tecnologias:
+[Next.js](https://nextjs.org), [Prisma](https://www.prisma.io/docs), Typescript banco de dados [PostgreSQL](https://www.postgresql.org)
+
+# Prisma
+`npm install prisma --save-dev`
+
+`npx prisma init --datasource-provider postgresql`
+
+# Cria uma migration em modo de desenvolvimento
+`npx prisma migrate dev --name init_db`
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
