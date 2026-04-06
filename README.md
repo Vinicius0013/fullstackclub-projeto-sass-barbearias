@@ -6,8 +6,20 @@ Sistema que utiliza as tecnologias:
 
 `npx prisma init --datasource-provider postgresql`
 
+# Comando para gerar client
+`npx prisma generate`
+
 # Cria uma migration em modo de desenvolvimento
 `npx prisma migrate dev --name init_db`
+
+# Popular as tabelas com arquivo seed.ts
+`npx prisma db seed`
+
+# Comando para validar a estrutura
+`npx prisma validate`
+
+# Comando para abrir o Prisma Studio e verificar tabelas/dados
+`npx prisma studio`
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
@@ -45,3 +57,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+# Plugin Prettier v3+ para Tailwind
+Plugin para reordenar as informações das classes de estilo.
+Acesse ao link da [documentação do plugin](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
+
+`npm install -D prettier prettier-plugin-tailwindcss`
+
+
+# Shadcn
+Shadcn é um conjunto de componentes com design elegante que podemos personalizar, estender e desenvolver para Next.js
+[Link da documentação](https://ui.shadcn.com/docs/installation/next)
+
+## Comando para instalação
+`npx shadcn@latest init`
