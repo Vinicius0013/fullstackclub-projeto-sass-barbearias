@@ -71,3 +71,12 @@ Shadcn é um conjunto de componentes com design elegante que podemos personaliza
 
 ## Comando para instalação
 `npx shadcn@latest init`
+
+# NextAuth.js
+Biblioteca que implementa a autenticação no Nextjs utilizando redes sociais.
+Versão utilizada é a v4.
+
+[Link da documentação](https://next-auth.js.org/getting-started/introduction)
+
+## Comando para instalação
+`npm install next-auth`
