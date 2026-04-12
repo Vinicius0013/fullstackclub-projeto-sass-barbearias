@@ -1,23 +1,16 @@
 import { PrismaClient } from "@prisma/client"
-import { PrismaPg } from "@prisma/adapter-pg"
 
 declare global {
   // eslint-disable-next-line no-var
   var cachedPrisma: PrismaClient
 }
 
-const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL!,
-})
-
 let prisma: PrismaClient
 if (process.env.NODE_ENV === "production") {
-  prisma = new PrismaClient({
-    adapter,
-  })
+  prisma = new PrismaClient()
 } else {
   if (!global.cachedPrisma) {
-    global.cachedPrisma = new PrismaClient({ adapter })
+    global.cachedPrisma = new PrismaClient()
   }
   prisma = global.cachedPrisma
 }
