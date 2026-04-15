@@ -30,6 +30,16 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
     return notFound()
   }
 
+  const services = barbershop.services.map((service) => ({
+    ...service,
+    price: Number(service.price),
+  }))
+
+  const safeBarbershop = {
+    ...barbershop,
+    services: services,
+  }
+
   return (
     <div>
       {/* IMAGEM */}
@@ -90,8 +100,12 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
       <div className="space-y-3 border-b border-solid p-5">
         <h2 className="text-xs font-bold uppercase text-gray-400">Serviços</h2>
         <div className="space-y-3">
-          {barbershop.services.map((service) => (
-            <ServiceItem key={service.id} service={service} />
+          {services.map((service) => (
+            <ServiceItem
+              key={service.id}
+              barbershop={safeBarbershop}
+              service={service}
+            />
           ))}
         </div>
       </div>

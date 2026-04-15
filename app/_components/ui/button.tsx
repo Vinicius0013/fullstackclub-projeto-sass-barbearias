@@ -20,10 +20,11 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-8 px-2.5",
+        default: "h-8 gap-1.5 px-2.5",
+        xs: "h-6 px-2 text-xs",
         sm: "h-7 px-2.5 text-sm",
         lg: "h-9 px-4",
-        icon: "h-8 w-8",
+        icon: "size-8",
       },
     },
     defaultVariants: {
@@ -46,6 +47,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         ref={ref}
         data-slot="button"
+        data-variant={variant}
+        data-size={size}
         className={cn(buttonVariants({ variant, size, className }))}
         {...props}
       />
