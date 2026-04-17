@@ -9,10 +9,13 @@ import Search from "./_components/search"
 import Link from "next/link"
 import { getServerSession } from "next-auth"
 import { authOptions } from "./_lib/auth"
+import { normalizeBookings } from "./_lib/mappers/booking"
 
 const Home = async () => {
   const session = await getServerSession(authOptions)
+
   const barbershops = await db.barbershop.findMany({})
+
   const popularBarbershops = await db.barbershop.findMany({
     orderBy: {
       name: "desc",
@@ -39,6 +42,9 @@ const Home = async () => {
         },
       })
     : []
+
+  // NORMALIZAÇÃO
+  const safeConfirmedBookings = normalizeBookings(confirmedBookings)
 
   return (
     <div>
@@ -91,7 +97,7 @@ const Home = async () => {
           Agendamentos
         </h2>
         <div className="flex gap-3 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-          {confirmedBookings.map((booking) => (
+          {safeConfirmedBookings.map((booking) => (
             <BookingItem key={booking.id} booking={booking} />
           ))}
         </div>

@@ -1,6 +1,5 @@
 "use client"
 
-import { Prisma } from "@prisma/client"
 import { Avatar, AvatarImage } from "./ui/avatar"
 import { Badge } from "./ui/badge"
 import { Card, CardContent } from "./ui/card"
@@ -31,17 +30,10 @@ import {
 import { toast } from "sonner"
 import { useState } from "react"
 import { deleteBooking } from "../_actions/delete-booking"
+import { SafeBooking } from "../_lib/mappers/booking"
 
 interface BookingItemPropos {
-  booking: Prisma.BookingGetPayload<{
-    include: {
-      service: {
-        include: {
-          barbershop: true
-        }
-      }
-    }
-  }>
+  booking: SafeBooking
 }
 
 // TODO: receber agendamento como prop
