@@ -10,6 +10,8 @@ import Link from "next/link"
 import { getServerSession } from "next-auth"
 import { authOptions } from "./_lib/auth"
 import { normalizeBookings } from "./_lib/mappers/booking"
+import { format } from "date-fns"
+import { ptBR } from "date-fns/locale"
 
 const Home = async () => {
   const session = await getServerSession(authOptions)
@@ -52,8 +54,17 @@ const Home = async () => {
       <Header />
       <div className="p-5">
         {/* TEXTO */}
-        <h2 className="text-xl font-bold">Olá, Vinícius!</h2>
-        <p>Segunda-feira, 06 de abril.</p>
+        <h2 className="text-xl font-bold">
+          Olá, {session?.user ? session.user.name : "bem-vindo"}!
+        </h2>
+        <p>
+          <span className="capitalize">
+            {format(new Date(), "EEEE, dd", { locale: ptBR })}
+          </span>
+          <span>
+            &nbsp;de&nbsp;{format(new Date(), "MMMM", { locale: ptBR })}.
+          </span>
+        </p>
 
         {/* BUSCA */}
         <div className="mt-6">
