@@ -2,16 +2,36 @@
 
 import { revalidatePath } from "next/cache"
 import { db } from "../_lib/prisma"
+import { getServerSession } from "next-auth"
+import { authOptions } from "../_lib/auth"
 
 interface CreateBookingParams {
-  userId: string
   serviceId: string
   date: Date
 }
 
 export const createBooking = async (params: CreateBookingParams) => {
-  await db.booking.create({
-    data: params,
+  const session = await getServerSession(authOptions)
+
+  if (!session?.user?.id) {
+    throw new Error("Usuário não autenticado")
+  }
+
+  const service = await db.barbershopService.findUnique({
+    where: {
+      id: params.serviceId,
+    },
   })
-  revalidatePath("/barbershops/[id]")
+
+  if (!service) {
+    throw new Error("Serviço não encontrado")
+  }
+
+  await db.booking.create({
+    data: {
+      ...params,
+      userId: session.user.id,
+    },
+  })
+  revalidatePath(`/barbershops/${service.barbershopId}`)
 }
