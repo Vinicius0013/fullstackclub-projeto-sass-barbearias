@@ -67,11 +67,7 @@ const DialogContent = React.forwardRef<
       {children}
       {showCloseButton && (
         <DialogPrimitive.Close asChild>
-          <Button
-            variant="ghost"
-            className="absolute right-2 top-2"
-            size="icon-sm"
-          >
+          <Button variant="ghost" className="absolute right-2 top-2" size="sm">
             <XIcon />
             <span className="sr-only">Close</span>
           </Button>
